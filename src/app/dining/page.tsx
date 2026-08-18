@@ -14,7 +14,7 @@ export default function DiningPage() {
     <InnerPageTemplate
       title="DINE AFTER DARK"
       subtitle="Restaurant, bar, and under-the-stars moments designed for memorable evenings."
-      image={hotelData.images.diningTable}
+      image={hotelData.images.restaurant}
     >
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="relative h-[380px] overflow-hidden rounded-3xl border border-white/15">

@@ -14,7 +14,7 @@ export default function GalleryPage() {
     <InnerPageTemplate
       title="Hibis Gallery"
       subtitle="A full-screen style editorial gallery with categorized visuals."
-      image={hotelData.images.hero}
+      image={hotelData.images.heroRoyal}
     >
       <GalleryPageClient />
     </InnerPageTemplate>

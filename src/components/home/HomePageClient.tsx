@@ -293,6 +293,7 @@ export default function HomePageClient() {
   };
 
   const comparedRooms = hotelData.rooms.filter((room) => selectedRooms.includes(room.id));
+  const bookingUrl = hotelData.booking[formState.property as keyof typeof hotelData.booking] ?? hotelData.booking.morjim;
 
   const submitContact = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -310,7 +311,7 @@ export default function HomePageClient() {
       <PremiumCursor />
       <AnimatePresence>{loading ? <Preloader /> : null}</AnimatePresence>
 
-      <div className="bg-[#0b0b08] text-white">
+      <div className="bg-[#0b0b08] pb-[calc(5.5rem+env(safe-area-inset-bottom))] text-white md:pb-0">
         <header className="fixed inset-x-0 top-0 z-[90] px-4 py-4 sm:px-8">
           <nav
             className={`mx-auto flex w-full max-w-7xl items-center justify-between rounded-full border px-4 py-3 backdrop-blur-xl transition-all duration-500 md:px-6 ${
@@ -417,7 +418,7 @@ export default function HomePageClient() {
             <div className="relative z-10 mx-auto w-full max-w-7xl">
               <div className="max-w-2xl pb-4">
                 <p className="text-[11px] uppercase tracking-[0.28em] text-[#d6ad63]">HIBIS · MORJIM, GOA</p>
-                <h1 className="mt-5 font-serif text-[clamp(3.6rem,7.5vw,7rem)] leading-[0.88] tracking-[-0.045em] text-[#f6f0e5]">
+                <h1 className="hero-title mt-5 font-serif text-[clamp(3rem,11vw,7rem)] leading-[0.88] tracking-[-0.045em] text-[#f6f0e5] sm:text-[clamp(4.5rem,7.5vw,7rem)]">
                   EXPERIENCE<br />TIMELESS BEAUTY
                 </h1>
                 <p className="mt-6 max-w-md text-sm leading-7 text-[#ede4d3]/85 sm:text-base">At Hibis, every moment is crafted with quiet elegance—so your stay feels as memorable as the destination.</p>
@@ -508,11 +509,11 @@ export default function HomePageClient() {
 
           <section className="overflow-hidden py-20" id="rooms">
             <SectionTitle eyebrow="Rooms" title="Find Your Pace by the Sea" subtitle="Designed to clarify category differences and speed up booking decisions." />
-            <div ref={roomsTrackRef} className="flex gap-6 px-4 lg:w-max lg:px-8">
+            <div ref={roomsTrackRef} className="rooms-track flex snap-x snap-mandatory gap-6 overflow-x-auto px-4 pb-8 lg:w-max lg:overflow-visible lg:px-8 lg:pb-0">
               {hotelData.rooms.map((room) => (
                 <article
                   key={room.id}
-                  className="room-card group w-[86vw] overflow-hidden border bg-[#17140e] sm:w-[420px]"
+                  className="room-card group w-[86vw] shrink-0 snap-center overflow-hidden border bg-[#17140e] sm:w-[420px]"
                   data-cursor="VIEW"
                 >
                   <div className="relative h-64 overflow-hidden">
@@ -678,7 +679,7 @@ export default function HomePageClient() {
           <section className="px-4 py-20 sm:px-8">
             <SectionTitle eyebrow="Stories from Hibis" title="Social Moments, Curated" />
             <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-3">
-              {[...hotelData.gallery, ...hotelData.gallery.slice(0, 3)].map((img, idx) => (
+              {hotelData.gallery.map((img, idx) => (
                 <article key={`${img.src}-${idx}`} className="group relative h-56 overflow-hidden rounded-2xl border border-white/15">
                   <Image src={img.src} alt={img.alt} fill sizes="(max-width: 768px) 100vw, 33vw" className="object-cover transition duration-700 group-hover:scale-105" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a08]/90 to-transparent opacity-70" />
@@ -845,14 +846,16 @@ export default function HomePageClient() {
             <SectionTitle eyebrow="Explore Hibis" title="Multi-Property Collection" />
             <div className="mx-auto grid max-w-7xl gap-4 md:grid-cols-2 lg:grid-cols-4">
               {hotelData.properties.map((property) => (
-                <article key={property.slug} className="group overflow-hidden rounded-3xl border border-white/15 bg-[#12120e]">
-                  <div className="relative h-52 overflow-hidden">
-                    <Image src={property.image} alt={property.name} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" className="object-cover transition duration-700 group-hover:scale-105" />
-                  </div>
-                  <div className="p-5">
-                    <h3 className="text-lg">{property.name}</h3>
-                    <p className="mt-2 text-xs text-blue-100/80">{property.label}</p>
-                  </div>
+                <article key={property.slug} className="overflow-hidden rounded-3xl border border-white/15 bg-[#12120e]">
+                  <Link href={`/${property.slug}`} className="group block" aria-label={`Explore ${property.name}`}>
+                    <div className="relative h-52 overflow-hidden">
+                      <Image src={property.image} alt={property.name} fill sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw" className="object-cover transition duration-700 group-hover:scale-105" />
+                    </div>
+                    <div className="p-5">
+                      <h3 className="text-lg">{property.name}</h3>
+                      <p className="mt-2 text-xs text-blue-100/80">{property.label}</p>
+                    </div>
+                  </Link>
                 </article>
               ))}
             </div>
@@ -987,6 +990,8 @@ export default function HomePageClient() {
               <Link href="/dining">Dining</Link>
               <Link href="/offers">Offers</Link>
               <Link href="/gallery">Gallery</Link>
+              <Link href="/experiences">Experiences</Link>
+              <Link href="/about">About</Link>
               <Link href="/contact">Contact</Link>
             </div>
           </div>
@@ -1014,23 +1019,53 @@ export default function HomePageClient() {
         {bookingOpen ? (
           <motion.div className="fixed inset-0 z-[110] bg-black/60" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
             <motion.div
-              className="absolute bottom-0 left-0 right-0 rounded-t-3xl border border-white/20 bg-[#15130e] p-6"
+              className="absolute bottom-0 left-0 right-0 max-h-[85svh] overflow-y-auto rounded-t-3xl border border-white/20 bg-[#15130e] p-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] sm:p-6"
               initial={{ y: "100%" }}
               animate={{ y: 0 }}
               exit={{ y: "100%" }}
             >
               <div className="mb-5 flex items-center justify-between">
                 <p className="text-sm uppercase tracking-[0.16em]">Book Your Escape</p>
-                <button onClick={() => setBookingOpen(false)} aria-label="Close booking panel">
+                <button type="button" onClick={() => setBookingOpen(false)} aria-label="Close booking panel">
                   <X size={18} />
                 </button>
               </div>
               <div className="grid gap-3">
-                <button className="rounded-xl border border-white/20 bg-white/5 p-3 text-left text-sm">Destination: Morjim</button>
-                <button className="rounded-xl border border-white/20 bg-white/5 p-3 text-left text-sm">Check-in / Check-out</button>
-                <button className="rounded-xl border border-white/20 bg-white/5 p-3 text-left text-sm">Guests & Rooms</button>
+                <label className="grid gap-2 text-xs uppercase tracking-[0.14em] text-blue-100/80">
+                  Destination
+                  <select
+                    className="rounded-xl border border-white/20 bg-white/5 p-3 text-sm normal-case tracking-normal text-white"
+                    value={formState.property}
+                    onChange={(event) => setFormState((prev) => ({ ...prev, property: event.target.value }))}
+                  >
+                    {hotelData.properties.map((property) => (
+                      <option key={property.slug} value={property.slug} className="bg-[#15130e] text-white">
+                        {property.name}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <label className="grid gap-2 text-xs uppercase tracking-[0.14em] text-blue-100/80">
+                  Check-in date
+                  <input
+                    type="date"
+                    className="rounded-xl border border-white/20 bg-white/5 p-3 text-sm text-white"
+                    value={formState.dates}
+                    onChange={(event) => setFormState((prev) => ({ ...prev, dates: event.target.value }))}
+                  />
+                </label>
+                <label className="grid gap-2 text-xs uppercase tracking-[0.14em] text-blue-100/80">
+                  Guests
+                  <select
+                    className="rounded-xl border border-white/20 bg-white/5 p-3 text-sm text-white"
+                    value={formState.guests}
+                    onChange={(event) => setFormState((prev) => ({ ...prev, guests: event.target.value }))}
+                  >
+                    {["1", "2", "3", "4", "5+"].map((guests) => <option key={guests} value={guests} className="bg-[#15130e] text-white">{guests} guest{guests === "1" ? "" : "s"}</option>)}
+                  </select>
+                </label>
                 <a
-                  href={hotelData.booking.morjim}
+                  href={bookingUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-[#b8893e] px-4 py-3 text-xs uppercase tracking-[0.16em] text-[#0b0b08] hover:bg-[#d6ad63]"

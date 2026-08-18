@@ -13,7 +13,7 @@ export default function AboutPage() {
     <InnerPageTemplate
       title="A Rare Flower. A Different Way to Stay."
       subtitle="The Hibis story blends vitality, sincerity, and tropical warmth across every destination."
-      image={hotelData.images.hero}
+      image={hotelData.images.heroRoyal}
     >
       <div className="space-y-5 rounded-3xl border border-white/15 bg-[#14130f] p-8 text-sm text-blue-100/85">
         <p>{hotelData.brand.signatureStory}</p>

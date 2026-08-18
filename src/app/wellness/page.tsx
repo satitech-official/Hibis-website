@@ -20,7 +20,7 @@ export default function WellnessPage() {
     <InnerPageTemplate
       title="HIBIS SAATMYA"
       subtitle="A wellness world where ocean air and holistic care meet." 
-      image={hotelData.images.wellness}
+      image={hotelData.images.family}
     >
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="rounded-3xl border border-[#c5a66a]/30 bg-[#1b180f] p-7">

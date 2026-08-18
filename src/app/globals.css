@@ -23,6 +23,7 @@ body {
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
 }
 
 body {
@@ -93,6 +94,25 @@ textarea {
   transition: all 0.25s ease;
 }
 
+img,
+iframe,
+video {
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  min-width: 0;
+}
+
+.rooms-track {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--hibis-gold) transparent;
+}
+
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
@@ -116,6 +136,27 @@ textarea:focus-visible {
   .room-card:nth-child(2n),
   .room-card:nth-child(3n) {
     transform: none;
+  }
+}
+
+@media (max-width: 1023px) {
+  .room-card:nth-child(2n),
+  .room-card:nth-child(3n) {
+    transform: none;
+  }
+
+  .room-card {
+    clip-path: polygon(5% 0, 100% 2%, 96% 100%, 0 97%);
+  }
+}
+
+@media (max-width: 639px) {
+  .hero-stage {
+    min-height: 720px;
+  }
+
+  .hero-title {
+    letter-spacing: -0.035em;
   }
 }
 

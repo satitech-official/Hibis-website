@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import BasePathGuard from "@/components/BasePathGuard";
 import "./globals.css";
 
 const title = "HIBIS Hotels & Resorts | The Blue Hibiscus Escape";
@@ -48,7 +49,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-[#0b0b08] text-white antialiased">{children}</body>
+      <body className="bg-[#0b0b08] text-white antialiased">
+        <BasePathGuard />
+        {children}
+      </body>
     </html>
   );
 }

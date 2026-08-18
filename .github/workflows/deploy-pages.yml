@@ -1,3 +1,4 @@
+# Fresh deployment trigger after static-export fixes
 name: Deploy HIBIS to GitHub Pages
 
 on:

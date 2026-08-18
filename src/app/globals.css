@@ -1,0 +1,133 @@
+@import "tailwindcss";
+
+:root {
+  --hibis-ink: #0b0b08;
+  --hibis-panel: #15130e;
+  --hibis-panel-soft: #1b1710;
+  --hibis-gold: #b8893e;
+  --hibis-gold-light: #d6ad63;
+  --hibis-ivory: #f6efe3;
+  --hibis-muted: #d8cbb6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  overflow-x: clip;
+  background: var(--hibis-ink);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  text-rendering: optimizeLegibility;
+  font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  color: var(--hibis-ivory);
+}
+
+.font-serif,
+h1,
+h2,
+h3 {
+  font-family: Iowan Old Style, Baskerville, Times New Roman, serif;
+}
+
+.hero-stage {
+  background: var(--hibis-ink);
+}
+
+.room-card {
+  clip-path: polygon(9% 0, 100% 3.5%, 94% 100%, 0 94%);
+  border-color: color-mix(in srgb, var(--hibis-gold) 68%, transparent) !important;
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.32);
+  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
+}
+
+.room-card:nth-child(2n) {
+  clip-path: polygon(5% 3%, 96% 0, 100% 94%, 8% 100%);
+  transform: translateY(1.25rem) rotate(1.25deg);
+}
+
+.room-card:nth-child(3n) {
+  transform: translateY(-0.5rem) rotate(-1deg);
+}
+
+.room-card:hover {
+  transform: translateY(-0.35rem) rotate(0deg);
+  border-color: var(--hibis-gold-light) !important;
+  box-shadow: 0 30px 65px rgba(0, 0, 0, 0.5);
+}
+
+.magnetic-link {
+  transition: transform 180ms ease-out, box-shadow 220ms ease, background-color 220ms ease;
+}
+
+[class*="text-blue-"] {
+  color: var(--hibis-muted) !important;
+}
+
+[class~="text-white"] {
+  color: var(--hibis-ivory) !important;
+}
+
+[class*="border-white"] {
+  border-color: rgba(214, 173, 99, 0.3) !important;
+}
+
+::selection {
+  background: rgba(184, 137, 62, 0.52);
+  color: var(--hibis-ivory);
+}
+
+a,
+button,
+input,
+select,
+textarea {
+  transition: all 0.25s ease;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #d6ad63;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .room-card,
+  .room-card:nth-child(2n),
+  .room-card:nth-child(3n) {
+    transform: none;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f0f0c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #b8893e, #d6ad63);
+  border-radius: 999px;
+}

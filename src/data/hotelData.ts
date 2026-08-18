@@ -1,0 +1,277 @@
+const images = {
+  hero: "/images/hibis/pool.jpg",
+  story: "/images/hibis/story-resort.jpg",
+  cityPool: "/images/hibis/hero-resort.jpg",
+  classic: "/images/hibis/room-classic.jpg",
+  classicPlus: "/images/hibis/room-classic-plus.jpg",
+  executive: "/images/hibis/room-executive.jpg",
+  premium: "/images/hibis/room-premium.jpg",
+  family: "/images/hibis/room-family.jpg",
+  cottage: "/images/hibis/room-cottage.jpg",
+  wellness: "/images/hibis/wellness.jpg",
+  dining: "/images/hibis/dining.jpg",
+  diningTable: "/images/hibis/dining-table.jpg",
+  events: "/images/hibis/events.jpg",
+  pool: "/images/hibis/pool.jpg",
+} as const;
+
+export const hotelData = {
+  images,
+  brand: {
+    name: "HIBIS Hotels & Resorts",
+    tagline: "STAY. BREATHE. BELONG.",
+    philosophy: "Holistic Innovations Bringing Inspiring Stays",
+    signatureStory:
+      "A rare blue hibiscus inspired a different way to stay—where tropical ease, wellness, and meaningful hospitality come together.",
+  },
+  confirmationFlags: {
+    // NEEDS_CLIENT_CONFIRMATION: Conflicting phone numbers are visible across channels.
+    PRIMARY_PHONE: "+91 702 851 8588",
+    // NEEDS_CLIENT_CONFIRMATION: Facebook lists a second number (+91 62890 09790).
+    WHATSAPP_NUMBER: "+91 702 851 8588",
+    // NEEDS_CLIENT_CONFIRMATION: Website mentions pet-friendly stay; third-party portals show policy variations.
+    PET_POLICY: "Pets allowed on request",
+    // NEEDS_CLIENT_CONFIRMATION: Some room categories show prices publicly, others do not.
+    ROOM_RATES: "Partial rates available",
+    // NEEDS_CLIENT_CONFIRMATION: Restaurant naming appears as 'The OG Bar' on one listing.
+    RESTAURANT_NAME: "The OG Bar",
+    // NEEDS_CLIENT_CONFIRMATION: FAQ snippets indicate 2:00 PM and 11:00 AM.
+    CHECK_IN_TIME: "2:00 PM",
+    // NEEDS_CLIENT_CONFIRMATION: FAQ snippets indicate 11:00 AM.
+    CHECK_OUT_TIME: "11:00 AM",
+    // NEEDS_CLIENT_CONFIRMATION: Airport transfer/pickup details require operational confirmation.
+    TRANSFER_DETAILS: "Pick & Drop available",
+    // NEEDS_CLIENT_CONFIRMATION: Offer validity windows are not consistently published.
+    OFFER_VALIDITY: "Subject to availability",
+  },
+  contact: {
+    email: "reservations@hibishotelsandresorts.com",
+    phone: "+91 702 851 8588",
+    whatsapp: "+917028518588",
+    address: "Morjim Beach Road, Tembwada, Pernem, Goa, 403512",
+    mapEmbedUrl:
+      "https://www.google.com/maps?q=Morjim%20Beach%20Road%20Tembwada%20Pernem%20Goa%20403512&output=embed",
+  },
+  social: {
+    instagram: "https://www.instagram.com/hibishotelsandresorts/",
+    facebook: "https://www.facebook.com/hibishotelsgoa/",
+  },
+  booking: {
+    // NEEDS_CLIENT_CONFIRMATION: Primary booking engine endpoint should be finalized.
+    primaryUrl: "https://www.hibishotelsandresorts.com/morjim/",
+    morjim: "https://www.hibishotelsandresorts.com/morjim/",
+    ashwem: "https://www.hibishotelsandresorts.com/",
+    katra: "https://www.hibishotelsandresorts.com/",
+    faridabad: "https://www.hibishotelsandresorts.com/",
+  },
+  properties: [
+    {
+      slug: "morjim",
+      name: "Hibis Morjim, Goa",
+      label: "Morjim • North Goa",
+      blurb: "A boutique escape between tropical calm, soulful wellness and the shores of Morjim.",
+      image: images.hero,
+      location: "Morjim Beach Road, Goa",
+    },
+    {
+      slug: "ashwem",
+      name: "Hibis Ashwem, Goa",
+      label: "Ashwem • North Goa",
+      blurb: "A calm coastal retreat near Mandrem and Arambol with immersive tropical character.",
+      image: images.story,
+      location: "Ashwem, North Goa",
+    },
+    {
+      slug: "katra",
+      name: "Hibis Devi Grand Katra",
+      label: "Katra • Jammu",
+      blurb: "A peaceful, convenient stay designed for pilgrimage and mountain travel comfort.",
+      image: images.cottage,
+      location: "Katra, Jammu",
+    },
+    {
+      slug: "faridabad",
+      name: "Gaia Emerald by Hibis",
+      label: "Faridabad • Haryana",
+      blurb: "An urban sanctuary balancing mindful living, business travel ease, and contemporary luxury.",
+      image: images.cityPool,
+      location: "Faridabad, Haryana",
+    },
+  ],
+  rooms: [
+    {
+      id: "classic",
+      name: "Hibis Classic Rooms",
+      idealFor: "Couples and solo beach breaks",
+      occupancy: "2 Guests",
+      bed: "Queen / Twin",
+      balcony: "Attached balcony",
+      roomCount: 7,
+      rate: null,
+      image: images.classic,
+      gallery: [images.classic, images.classicPlus],
+      amenities: ["Tea/Coffee maker", "Housekeeping on call", "Parking", "Air conditioning"],
+      shortDescription: "Light-filled rooms for slow mornings and easy beach days.",
+    },
+    {
+      id: "classic-plus",
+      name: "Hibis Classic Plus Rooms",
+      idealFor: "Couples seeking extra comfort",
+      occupancy: "2 Guests",
+      bed: "Queen",
+      balcony: "Attached balcony",
+      roomCount: 3,
+      rate: "₹2,999",
+      image: images.classicPlus,
+      gallery: [images.classicPlus, images.executive],
+      amenities: ["Tea/Coffee maker", "Private bath", "Parking", "Air conditioning"],
+      shortDescription: "A refined, airy stay category with elevated calm.",
+    },
+    {
+      id: "executive",
+      name: "Hibis Executive Rooms",
+      idealFor: "Long weekends and comfort-focused stays",
+      occupancy: "2–3 Guests",
+      bed: "King bed",
+      balcony: "Attached balcony",
+      roomCount: 14,
+      rate: "₹3,999",
+      image: images.executive,
+      gallery: [images.executive, images.premium],
+      amenities: ["Hair dryer", "Tea/Coffee maker", "Parking", "Air conditioning"],
+      shortDescription: "Spacious, polished rooms designed for complete ease.",
+    },
+    {
+      id: "premium-king",
+      name: "Hibis Premium King Rooms",
+      idealFor: "Romantic and premium leisure stays",
+      occupancy: "2–3 Guests",
+      bed: "King bed",
+      balcony: "Attached balcony",
+      roomCount: 12,
+      rate: "₹4,999",
+      image: images.premium,
+      gallery: [images.premium, images.cottage],
+      amenities: ["Hair dryer", "Tea/Coffee maker", "Parking", "Air conditioning"],
+      shortDescription: "A class of its own, steps from the sea and sunset skies.",
+    },
+    {
+      id: "family-studio",
+      name: "Hibis Family Interconnected Studio",
+      idealFor: "Families and group stays",
+      occupancy: "4 Guests",
+      bed: "King + extra bedding",
+      balcony: "Attached balcony",
+      roomCount: 2,
+      rate: null,
+      image: images.family,
+      gallery: [images.family, images.classic],
+      amenities: ["Interconnected layout", "Tea/Coffee maker", "Parking", "Air conditioning"],
+      shortDescription: "Connected comfort for shared stories and longer stays.",
+    },
+    {
+      id: "luxe-cottage",
+      name: "Hibis Luxe Pine Wood Cottages",
+      idealFor: "Private, nature-led stays",
+      occupancy: "2 Guests",
+      bed: "King bed",
+      balcony: "Private sit-out",
+      roomCount: 4,
+      rate: null,
+      image: images.cottage,
+      gallery: [images.cottage, images.premium],
+      amenities: ["Wood-finished interiors", "Tea/Coffee maker", "Parking", "Air conditioning"],
+      shortDescription: "Cozy luxury wrapped in tropical stillness.",
+    },
+  ],
+  experiences: [
+    { title: "Outdoor Swimming Pool", image: images.pool, tone: "wide" },
+    { title: "Wellness", image: images.wellness, tone: "tall" },
+    { title: "Pick & Drop", image: images.cityPool, tone: "square" },
+    { title: "Sightseeing", image: images.story, tone: "wide" },
+    { title: "In-Room Dining", image: images.dining, tone: "square" },
+    { title: "DJ / Evening Experience", image: images.diningTable, tone: "tall" },
+    { title: "Beach Experience", image: images.hero, tone: "wide" },
+    { title: "Pet-Friendly Stay", image: images.cottage, tone: "square" },
+  ],
+  offers: [
+    {
+      id: "early-booking",
+      title: "Early Booking Offer",
+      description: "Book at least two weeks in advance and enjoy a flat 15% savings.",
+      terms: "Advance booking required.",
+      validity: "Subject to availability",
+      image: images.premium,
+    },
+    {
+      id: "sightseeing",
+      title: "Goa Sightseeing Package",
+      description: "Curated Goa day experiences starting from ₹1,999 as listed publicly.",
+      terms: "Activity inclusions vary by package.",
+      validity: "Subject to availability",
+      image: images.story,
+    },
+  ],
+  reviews: [
+    {
+      name: "Shreya Singh",
+      source: "TripAdvisor",
+      quote:
+        "Friendly staff, clean rooms, and a location that makes beach days effortless. The breakfast spread and pool stood out.",
+      theme: "Location • Hospitality • Pool",
+    },
+    {
+      name: "Siddharth Rawat",
+      source: "TripAdvisor",
+      quote:
+        "A pleasant Morjim stay with attentive service, comfortable rooms, and a calm atmosphere close to local attractions.",
+      theme: "Comfort • Service • Ambience",
+    },
+  ],
+  faq: [
+    {
+      q: "What are the check-in and check-out timings at Hibis Morjim?",
+      a: "Publicly listed timings indicate check-in at 2:00 PM and check-out at 11:00 AM. Early or late requests are subject to availability.",
+    },
+    {
+      q: "How far is Hibis Morjim from major airports?",
+      a: "Morjim is publicly referenced at approximately 55 km from Dabolim Airport and around 28 km from Mopa Airport.",
+    },
+    {
+      q: "Does Hibis Morjim support wellness-focused stays?",
+      a: "Yes, Hibis Saatmya and wellness-led experiences are highlighted across public channels including yoga, mindfulness, and Ayurvedic therapies.",
+    },
+    {
+      q: "Is parking available on property?",
+      a: "Private parking is listed among room and property amenities.",
+    },
+    {
+      q: "Is Hibis Morjim pet-friendly?",
+      a: "Public pages mention pet-friendly stay. Final policy, charges, and restrictions should be confirmed directly before booking.",
+    },
+  ],
+  gallery: [
+    { src: images.story, category: "beach", alt: "Tropical coast-side resort view" },
+    { src: images.classicPlus, category: "rooms", alt: "Light-filled Hibis room interior" },
+    { src: images.pool, category: "pool", alt: "Pool and palms at blue hour" },
+    { src: images.dining, category: "dining", alt: "Freshly prepared wellness dining" },
+    { src: images.wellness, category: "wellness", alt: "A quiet wellness moment" },
+    { src: images.events, category: "experiences", alt: "An intimate celebratory setting" },
+    { src: images.premium, category: "rooms", alt: "Premium king room interior" },
+    { src: images.cottage, category: "cottages", alt: "A private cottage-inspired stay" },
+  ],
+  petFriendly: {
+    enabled: false,
+    note: "Awaiting final client confirmation before public launch.",
+  },
+};
+
+export const navItems = [
+  { label: "Stays", href: "#stays" },
+  { label: "Experiences", href: "#experiences" },
+  { label: "Wellness", href: "#wellness" },
+  { label: "Dining", href: "#dining" },
+  { label: "Offers", href: "#offers" },
+  { label: "Gallery", href: "#gallery" },
+  { label: "About", href: "#about" },
+];
